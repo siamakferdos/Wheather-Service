@@ -4,7 +4,7 @@
   "description": "A Rest-based weather service, retrive information about the weather of cities from openweathermap.org",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jasmine",
     "start": "node server.js"
   },
   "repository": {

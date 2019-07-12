@@ -1,0 +1,11 @@
+FROM node:10
+
+WORKDIR c:\\project-test\\weather-service\\src
+
+COPY src\\package.json src\\app.js c:\\project-test\\weather-service\\src
+COPY src\\lib c:\\project-test\\weather-service\\src\\app\\lib
+COPY src\\tests c:\\project-test\\weather-service\\src\\tests
+
+RUN npm install
+
+CMD [ "npm", "test" ]
