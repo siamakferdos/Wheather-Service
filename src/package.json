@@ -19,7 +19,8 @@
   "homepage": "https://github.com/siamakferdos/Wheather-Service#readme",
   "dependencies": {
     "request": "^2.88.0",
-    "restify": "^8.3.3"
+    "restify": "^8.3.3",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "jasmine": "^3.4.0"

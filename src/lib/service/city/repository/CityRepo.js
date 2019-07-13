@@ -1,13 +1,16 @@
-const fs = require('fs');
 
 class CityRepo{
     constructor() {
         this.serviceLocator = require('../../../serviceLocator/ServiceLocator').ServcieLocator;
-        this.appRoot = this.serviceLocator.getInstance("AppFileUtility").getAppRoot();
-        this.citiesFilePath = "./../asset/cities.json";
+        this.httpUtility = serviceLocator.getInstance("HttpUtility");
+        this.fileUtility = serviceLocator.getInstance("FileUtility");
+        this.appRoot = global.appRoot;
+        this.citiesFilePath = `${this.appRoot}\\asset\\cities.json`;
+        this.citiesZipFilePath = `${this.appRoot}\\asset\\cities.json_zip`;
+        this.citiesDownloadUrl = "http://bulk.openweathermap.org/sample/city.list.json.gz";
     }
     downloadCities() {   
-        const http = require('http');
+        
         var self = this;
         
         return new Promise(function (resolve, reject) {
@@ -15,17 +18,17 @@ class CityRepo{
                 resolve();
                 return;
             }
-            try{
-                const file = fs.createWriteStream(self.citiesFilePath);
-                console.log(self.citiesFilePath)
-                http.get("http://bulk.openweathermap.org/sample/city.list.json.gz", function (response) {
-                    response.pipe(file);
-                    resolve();
-                });
+            try {                
+                self.httpUtility.downloadFile(self.citiesDownloadUrl, self.citiesFilePath + "_zip")
+                    .then(() => { 
+                        self.fileUtility.GunzipFile(self.citiesFilePath + "_zip", self.citiesFilePath);
+                    })
+                    .catch((err) => {throw err});
+
             } catch (e) {
                 reject(e);
             }
-            
+                
         })
     }
     deleteCitiesFile() {
@@ -35,10 +38,7 @@ class CityRepo{
     isCitiesFileExist() {
         return fs.existsSync(`${appRoot}/asset/cities.json`);
     }
-    getAllCities() {
-        
-    }
-
+   
 }
 
 module.exports = CityRepo;

@@ -3,9 +3,10 @@ class ServiceLocator {
     constructor() {
         this.services = {}; 
         this.services.COORDINATEUTILITY = { type: "singleton", constructor: require("../infrastructure/geographic/CoordinateUtility") }
-        this.services.CITYREPO = { constructor: require("../service/city/repository/CityRepo") }
+        this.services.CITYREPO = { type: "singleton", constructor: require("../service/city/repository/CityRepo") }
         this.services.CITY = { constructor: require("../service/city/City") }
-        this.services.APPFILEUTILITY = { type: "singleton", constructor: require("../infrastructure/file/AppFileUtility") }
+        this.services.FILEUTILITY = { type: "singleton", constructor: require("../infrastructure/file/FileUtility") }
+        this.services.HTTPUTILITY = { type: "singleton", constructor: require("../infrastructure/http/HttpUtility") }
     }
 
     getInstance(service, args) {
