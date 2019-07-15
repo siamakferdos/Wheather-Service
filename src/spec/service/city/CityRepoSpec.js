@@ -2,17 +2,18 @@ var serviceLocator = require('../../../lib/serviceLocator/ServiceLocator').Servc
 
 describe("CityRepo", function () {
     beforeAll(function () {
+        global.serviceLocator = serviceLocator;
+        global.appRoot = process.mainModule.paths[0].split('node_modules')[0].slice(0, -1);
         this.cityRepo = serviceLocator.getInstance("CityRepo");
-        //this.appFileUtility = serviceLocator.getInstance("AppFileUtility");
-        // spyOn(serviceLocator, 'getAppRoot').and.callFake(function () {            
-        //     return '/';
-        // });
     });
 
-    it("should download a json file of cities list", function () {
-        this.cityRepo.deleteCitiesFile();
-        this.cityRepo.downloadCities()
+    it("should download a json file of cities list", function () {        
+        this.cityRepo.syncCities()
             .then(() => expect(this.cityRepo.isCitiesFileExist()).toEqual(true))
-            .catch(e => console.log(e));        
+            .catch(e => console.log(e));
+    })
+
+    it("should get citeis list", function () {
+        expect(this.cityRepo.getCities().length).toBeGreaterThan(0)
     })
 });

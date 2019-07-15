@@ -1,13 +1,32 @@
-class City{
+class City {
     constructor() {
-        var coordinateUtility = global.serviceLocator.getInstance("CoordinateUtility");
-        var cityRepo = global.serviceLocator.getInstance("CityRepo");
+        this.coordinateUtility = global.serviceLocator.getInstance("CoordinateUtility");
+        this.cityRepo = global.serviceLocator.getInstance("CityRepo");        
     }
     syncCitiesList() {
-        cityRepo.downloadCities();
+        return this.cityRepo.syncCities();
     }
-    getCloseCitiesTo(coordinate, distance) {
-        
+
+    getCloseCitiesTo(coordinate) {
+        var closeCities;
+        closeCities = this.cityRepo.getCities().filter(city =>
+            this.coordinateUtility.getCoordinatesDistance(
+                coordinate.lat,
+                coordinate.lon,
+                city.coord.lat,
+                city.coord.lon) < global.appConfig.getCloseDistance
+        );
+        return closeCities;
+    }
+
+    getCity(cityId) {
+        var city = this.cityRepo.getCities().find(city => {
+            if (city.id == cityId)
+                return city;
+        }
+            
+        );
+        return city;
     }
 }
 
