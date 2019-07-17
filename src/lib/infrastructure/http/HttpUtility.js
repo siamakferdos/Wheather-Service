@@ -17,6 +17,18 @@ class HttpUtility{
             }
         });
     }
+
+    callGetMethodApi(url){
+        return new Promise(function (resolve, reject) {
+            try {
+                http.get(url, function (res) {                    
+                    resolve();
+                });
+            } catch (err) {
+                reject(err);
+            }
+        });
+    }
 }
 
 module.exports = HttpUtility;

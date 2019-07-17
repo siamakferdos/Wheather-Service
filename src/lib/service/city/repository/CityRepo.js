@@ -6,7 +6,6 @@ class CityRepo {
         this.appRoot = global.appRoot;
         this.citiesFilePath = `${this.appRoot}\\asset\\cities.json`;
         this.citiesZipFilePath = `${this.appRoot}\\asset\\cities.json_zip`;
-        this.citiesDownloadUrl = "http://bulk.openweathermap.org/sample/city.list.json.gz";
         this.cities = null;
     }
 
@@ -18,7 +17,7 @@ class CityRepo {
                 return;
             }
             try {
-                self.httpUtility.downloadFile(self.citiesDownloadUrl, self.citiesFilePath + "_zip")
+                self.httpUtility.downloadFile(global.appConfig.citiesFileUrl, self.citiesFilePath + "_zip")
                     .then(() => {
                         self.fileUtility.gunzipFile(self.citiesFilePath + "_zip", self.citiesFilePath);
                         resolve();
