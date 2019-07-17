@@ -12,8 +12,8 @@ describe("WeatherRepo", function () {
     });
 
     it("should return weather of a city by cityId", function () {        
-        this.weatherRepo.getWeatherOfCity()
-            .then(() => expect(this.cityRepo.isCitiesFileExist()).toEqual(true))
+        this.weatherRepo.getWeaherOfCity(2873891)
+            .then((city) => expect(city.coord).toBe({"lon":145.77,"lat":-16.92}))
             .catch(e => console.log(e));
     })
 });

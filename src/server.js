@@ -7,12 +7,10 @@ var city = global.serviceLocator.getInstance("City");
 city.syncCitiesList().then(() => {
 }).catch(err => console.log(err));
 
-var server = require('./lib/route/route')
-
+var server = require('./lib/route/route');
 server.on('NotFound', function (req, res, err, cb) {    
     return cb();
 })
-
 server.on('BadRequest', function (req, res, err, cb) {    
     return cb();
 })

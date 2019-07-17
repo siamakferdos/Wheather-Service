@@ -7,8 +7,22 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Mocha Tests",
+            "program": "${workspaceFolder}/src/node_modules/jasmine/bin/jasmine",
+            
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}\\src\\server.js"
+            "program": "${workspaceFolder}\\src\\server.js",
+            "args": [ 
+                "npm test ${workspaceFolder}\\src\\spec\\service\\city\\CityRepoSpec.js" 
+            ], 
+            "env": { 
+                "NODE_PATH": "." 
+            } 
         }
     ]
 }

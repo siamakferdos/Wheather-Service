@@ -4,6 +4,10 @@ class Weather{
     }
 
     getWeatherOfCity(cityId) {
-        return this.weatherRepo.getWeaherOfCity(cityId);
+        return this.weatherRepo.getWeaherOfCity(cityId).then( weather => {
+             return Promise.resolve(weather)
+            });
     }
 }
+
+module.exports = Weather

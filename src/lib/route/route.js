@@ -1,6 +1,6 @@
 
 const {cityInfo, citiesList} = require("./city_route")
-//const cityWeather = require("./weather_route")
+const {cityWeather} = require("./weather_route")
 
 var restify = require('restify');
 var config = require('../../config/config');
@@ -15,7 +15,6 @@ const server = restify.createServer(
 
 
 server.use(restifyPlugins.jsonBodyParser({ mapParams: true }));
-//server.use(restifyPlugins.acceptParser(restify.acceptable));
 server.use(restifyPlugins.queryParser({ mapParams: true }));
 server.use(restifyPlugins.fullResponse());
 
@@ -25,7 +24,7 @@ server.listen(config.port, function () {
 
 
 server.get('/cities/:cityId', cityInfo);
-//server.get('/cities/:cityId', cityWeather);
-server.get('/cities/:cityId/weather', citiesList);
+server.get('/cities/:cityId/weather', cityWeather);
+server.get('/cities', citiesList);
 
 module.exports = server

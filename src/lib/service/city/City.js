@@ -14,7 +14,7 @@ class City {
                 coordinate.lat,
                 coordinate.lon,
                 city.coord.lat,
-                city.coord.lon) < global.appConfig.getCloseDistance
+                city.coord.lon) < global.appConfig.closeDistance
         );
         return closeCities;
     }
@@ -23,9 +23,7 @@ class City {
         var city = this.cityRepo.getCities().find(city => {
             if (city.id == cityId)
                 return city;
-        }
-            
-        );
+        });
         return city;
     }
 }

@@ -5,6 +5,8 @@ class ServiceLocator {
         this.services.COORDINATEUTILITY = { type: "singleton", constructor: require("../infrastructure/geographic/CoordinateUtility") }
         this.services.CITYREPO = { type: "singleton", constructor: require("../service/city/repository/CityRepo") }
         this.services.CITY = { constructor: require("../service/city/City") }
+        this.services.WEATHERREPO = { type: "singleton", constructor: require("../service/weather/repository/WeatherRepo") }
+        this.services.WEATHER = { constructor: require("../service/weather/Weather") }
         this.services.FILEUTILITY = { type: "singleton", constructor: require("../infrastructure/file/FileUtility") }
         this.services.HTTPUTILITY = { type: "singleton", constructor: require("../infrastructure/http/HttpUtility") }        
         this.services.APPCONFIG = { type: "singleton", constructor: require("../../config/AppConfig") }

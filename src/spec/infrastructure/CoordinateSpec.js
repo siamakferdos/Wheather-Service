@@ -4,7 +4,6 @@ describe("CoordinateUtility", function () {
     var coordinateUtility;
     beforeAll(function () {
         this.coordinateUtility = serviceLocator.getInstance("CoordinateUtility");
-        console.log(this.coordinateUtility);
     });
    
     it("should determine if a point is close than 10 KM", function () {

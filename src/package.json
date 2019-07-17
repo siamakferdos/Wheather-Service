@@ -25,6 +25,7 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "jasmine": "^3.4.0"
+    "jasmine": "^3.4.0",
+    "mocha": "^6.1.4"
   }
 }

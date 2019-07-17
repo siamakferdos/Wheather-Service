@@ -10,8 +10,8 @@ class WeatherRepo{
                 self.httpUtility.callGetMethodApi(
                         `${global.appConfig.weatherByCityIdUrl}?id=${cityId}&appid=${global.appConfig.weatherDotOrgApiKey}`
                     )
-                    .then(() => {                        
-                        resolve();
+                    .then(weather => {                        
+                        return resolve(weather);
                     })
                     .catch((err) => { throw err });
             } catch (e) {
@@ -21,3 +21,5 @@ class WeatherRepo{
         })
     }
 }
+
+module.exports = WeatherRepo
